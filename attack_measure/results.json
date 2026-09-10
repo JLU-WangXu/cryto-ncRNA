@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "timestamp_utc": "2026-09-08T12:14:25.412655+00:00",
+    "random_seed": 20260908,
+    "python": "3.12.13",
+    "versions": {
+      "pycryptodome": "3.23.0",
+      "numpy": "2.4.6"
+    },
+    "threads_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "reference_code": "/lenovofs1/home/wangyq/npj_uncon_comput/version2/code/ncRNA 3.0/ncRNA3.5.py",
+    "reference_code_sha256": "107b3e892d4390e23ac8a4e2f49e1de38a8eac971f157094e5d26c7d05f78732",
+    "cpu_model": "AMD EPYC 9354 32-Core Processor",
+    "nproc": 64,
+    "loadavg": [
+      31.79,
+      28.34,
+      27.32
+    ],
+    "platform": "Linux-4.18.0-553.el8_10.x86_64-x86_64-with-glibc2.35"
+  },
+  "exp1": {
+    "payload_bytes": 296,
+    "material_bytes": 288,
+    "components": {
+      "kdf_pycryptodome_1e5": {
+        "median_s": 0.046720460057258606,
+        "mean_s": 0.04666757720212142,
+        "std_s": 0.0015482186962227087,
+        "min_s": 0.04399285838007927,
+        "repeats": 30
+      },
+      "kdf_hashlib_1e5": {
+        "median_s": 0.015226726420223713,
+        "mean_s": 0.015304755295316379,
+        "std_s": 0.0009143284255056685,
+        "min_s": 0.013894418254494667,
+        "repeats": 30
+      },
+      "chacha20_decrypt": {
+        "median_s": 3.935769200325012e-06,
+        "mean_s": 4.111602902412415e-06,
+        "std_s": 5.434629786225563e-07,
+        "min_s": 3.5744160413742065e-06,
+        "repeats": 30
+      },
+      "validity_check": {
+        "median_s": 5.228444933891296e-06,
+        "mean_s": 5.258371432622274e-06,
+        "std_s": 6.072403130505661e-08,
+        "min_s": 5.21540641784668e-06,
+        "repeats": 30
+      }
+    },
+    "composed": {
+      "guess_path_implementation": {
+        "median_s": 0.04638122394680977,
+        "mean_s": 0.047134901272753875,
+        "std_s": 0.0034837389469835503,
+        "min_s": 0.043571608141064644,
+        "repeats": 30
+      },
+      "guess_path_openssl_bound": {
+        "median_s": 0.01526623871177435,
+        "mean_s": 0.015314578947921594,
+        "std_s": 0.0006462232400228493,
+        "min_s": 0.014150802046060562,
+        "repeats": 30
+      },
+      "full_decrypt_pipeline": {
+        "median_s": 0.04622349701821804,
+        "mean_s": 0.046271942493816214,
+        "std_s": 0.00245404479868711,
+        "min_s": 0.042707230895757675,
+        "repeats": 30
+      }
+    },
+    "kdf_fraction_of_guess_path": 1.0073140827598226,
+    "rates_per_core_cands_per_s": {
+      "implementation": 21.560448709736622,
+      "openssl_bound": 65.50401961347119,
+      "openssl_speedup_factor": 3.0381566031086265
+    },
+    "structure_prediction_pass_s": {
+      "32": {
+        "median_s": 1.1207535862922668e-05,
+        "mean_s": 1.140131304661433e-05,
+        "std_s": 8.356126896139322e-07,
+        "min_s": 1.0775402188301086e-05,
+        "repeats": 30
+      },
+      "128": {
+        "median_s": 4.411768168210983e-05,
+        "mean_s": 4.4547704358895617e-05,
+        "std_s": 1.311527194320312e-06,
+        "min_s": 4.375725984573364e-05,
+        "repeats": 30
+      },
+      "1024": {
+        "median_s": 0.00040419865399599075,
+        "mean_s": 0.00041437769929567975,
+        "std_s": 5.4348167358668484e-05,
+        "min_s": 0.0003986284136772156,
+        "repeats": 30
+      }
+    },
+    "exhaustive_extrapolation_linear": {
+      "32nt": {
+        "bits": 64,
+        "candidates": 1.8446744073709552e+19,
+        "core_years_single_core": 27111775546.05574,
+        "wall_years_at_1e4_cores": 2711177.554605574,
+        "wall_years_at_1e6_cores": 27111.775546055742,
+        "core_years_openssl_bound": 8923758412.688507
+      },
+      "64nt": {
+        "bits": 128,
+        "candidates": 3.402823669209385e+38,
+        "core_years_single_core": 5.001239848819473e+29,
+        "wall_years_at_1e4_cores": 5.001239848819472e+25,
+        "wall_years_at_1e6_cores": 5.001239848819473e+23,
+        "core_years_openssl_bound": 1.6461428761447747e+29
+      },
+      "128nt": {
+        "bits": 256,
+        "candidates": 1.157920892373162e+77,
+        "core_years_single_core": 1.7018337332956066e+68,
+        "wall_years_at_1e4_cores": 1.7018337332956065e+64,
+        "wall_years_at_1e6_cores": 1.7018337332956067e+62,
+        "core_years_openssl_bound": 5.601533941845852e+67
+      }
+    },
+    "extrapolation_note": "linear extrapolation from the measured single-core reject path; Julian year = 31557600 s; parallelism rows assume perfect scaling"
+  },
+  "exp2": {
+    "configs": [
+      {
+        "config": "A_demo_released_vectors",
+        "seed_length_nt": 32,
+        "cipher_input_bytes": 288,
+        "cipher_input_sha256": "e955cf4e361c775c3093e61b1866b9f6f94971672e43be8307449a781cbf4f61",
+        "n_codon_symbols": 96,
+        "validity_false_positive_prob": 4.043174611952195e-174,
+        "byte_equal": true,
+        "indices_recomputed_match_delivered": true,
+        "checksum_sanity_ok": true,
+        "plaintext_roundtrip_ok": true,
+        "attacker_inputs": [
+          "known plaintext",
+          "delivered codon-substitution matrix",
+          "delivered permutation indices",
+          "public encoding/folding/permutation functions"
+        ],
+        "secret_inputs_used_by_attacker": []
+      },
+      {
+        "config": "B32_random",
+        "seed_length_nt": 32,
+        "cipher_input_bytes": 258,
+        "cipher_input_sha256": "3560cb673a42c2dc1147bc3da2ff847af61f745c33e60c038832644640f67200",
+        "n_codon_symbols": 86,
+        "validity_false_positive_prob": 4.661462957000129e-156,
+        "byte_equal": true,
+        "indices_recomputed_match_delivered": true,
+        "checksum_sanity_ok": true,
+        "plaintext_roundtrip_ok": true,
+        "attacker_inputs": [
+          "known plaintext",
+          "delivered codon-substitution matrix",
+          "delivered permutation indices",
+          "public encoding/folding/permutation functions"
+        ],
+        "secret_inputs_used_by_attacker": []
+      },
+      {
+        "config": "B64_random",
+        "seed_length_nt": 64,
+        "cipher_input_bytes": 384,
+        "cipher_input_sha256": "8c9366b5edc73ed80784de5188dbc3e8b048283c10d8940dd8e50cb8e9154467",
+        "n_codon_symbols": 128,
+        "validity_false_positive_prob": 6.441148769597133e-232,
+        "byte_equal": true,
+        "indices_recomputed_match_delivered": true,
+        "checksum_sanity_ok": true,
+        "plaintext_roundtrip_ok": true,
+        "attacker_inputs": [
+          "known plaintext",
+          "delivered codon-substitution matrix",
+          "delivered permutation indices",
+          "public encoding/folding/permutation functions"
+        ],
+        "secret_inputs_used_by_attacker": []
+      },
+      {
+        "config": "B128_random",
+        "seed_length_nt": 128,
+        "cipher_input_bytes": 513,
+        "cipher_input_sha256": "a8b5a5e26e02f22ca3c534ac655d3459d9efb0571944188fe055669ae11717f3",
+        "n_codon_symbols": 171,
+        "validity_false_positive_prob": 1.390671161567e-309,
+        "byte_equal": true,
+        "indices_recomputed_match_delivered": true,
+        "checksum_sanity_ok": true,
+        "plaintext_roundtrip_ok": true,
+        "attacker_inputs": [
+          "known plaintext",
+          "delivered codon-substitution matrix",
+          "delivered permutation indices",
+          "public encoding/folding/permutation functions"
+        ],
+        "secret_inputs_used_by_attacker": []
+      }
+    ],
+    "all_pass": true
+  },
+  "exp3": {
+    "M_wrong_candidates": 100,
+    "rejected": 100,
+    "elapsed_s": 4.285598972812295,
+    "rate_cands_per_s_per_core": 23.3339611649146,
+    "true_seed_validity_pass": true,
+    "true_seed_full_pipeline_confirms": true,
+    "acceptance_predicate_note": "the appended SHA-256 checksum covers nonce||ciphertext and is key-independent; the effective key-acceptance predicate is the nucleotide-alphabet validity of the decrypted material",
+    "exp1_cross_check": {
+      "expected_rate_from_exp1": 21.560448709736622,
+      "ratio_exp3_over_exp1": 1.0822576783560662
+    }
+  }
+}

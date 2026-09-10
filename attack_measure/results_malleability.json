@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "timestamp_utc": "2026-09-09T14:06:08.666772+00:00",
+    "experiment": "constructed-tampering malleability / integrity boundary",
+    "random_seed": 20260908,
+    "n_trials_per_scenario": 30,
+    "payload_length_bytes": 256,
+    "plaintext_alphabet": "string.ascii_letters + string.digits; one fixed plaintext via random.Random(20260909)",
+    "reference_code": "/lenovofs1/home/wangyq/npj_uncon_comput/version2/code/ncRNA 3.0/ncRNA3.5.py",
+    "reference_code_sha256": "107b3e892d4390e23ac8a4e2f49e1de38a8eac971f157094e5d26c7d05f78732",
+    "reference_code_access": "read-only import (stubbed matplotlib.pyplot); file untouched",
+    "checksum_definition": "SHA-256(nonce || ciphertext), unkeyed, verified by verify_and_remove_checksum before any key use",
+    "acceptance_predicate": "nucleotide-alphabet validity of the decrypted material (cha_decrypt ACGU branch), then inverse substitution",
+    "plaintext_known_to_attacker": true,
+    "metadata_delivered_to_attacker": [
+      "codon-substitution matrix",
+      "permutation indices",
+      "public encoding/folding/permutation functions"
+    ],
+    "versions": {
+      "pycryptodome": "3.23.0",
+      "numpy": "2.4.6"
+    },
+    "threads_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "cpu_model": "AMD EPYC 9354 32-Core Processor",
+    "nproc": 64,
+    "loadavg": [
+      8.87,
+      7.81,
+      6.8
+    ],
+    "platform": "Linux-4.18.0-553.el8_10.x86_64-x86_64-with-glibc2.35",
+    "rng_derivation": "arm_rng = random.Random(20260909 + 1); plaintext rng = random.Random(20260909)",
+    "note_c": "scenario (c) is cited from ablation_measure B5 and intentionally not re-run"
+  },
+  "scenarios": {
+    "a_checksum_bypass": {
+      "description": "flip 1 random bit in the ciphertext body, recompute SHA-256(nonce||ciphertext) and replace the checksum, submit to the full frozen decryption pipeline",
+      "tampered_bytes": 1,
+      "n_trials": 30,
+      "checksum_verification_passed": 30,
+      "checksum_verification_pass_rate": 1.0,
+      "outcome_counts": {
+        "ok": 7,
+        "alphabet_rejected": 23
+      },
+      "alphabet_check_pass_rate": 1.0,
+      "decrypted_to_a_valid_payload": 7,
+      "control_no_recompute": {
+        "description": "same single-bit flips, checksum left untouched",
+        "checksum_verification_passed": 0,
+        "checksum_verification_pass_rate": 0.0,
+        "outcome_counts": {
+          "checksum_rejected": 30
+        }
+      }
+    },
+    "b_known_plaintext_selected_change": {
+      "description": "known-plaintext selected change: material symbol 'A'(0x41) -> 'G'(0x47) (XOR delta 0x0006, 2 bits) applied to the corresponding ciphertext byte, checksum recomputed and replaced, full decryption run",
+      "xor_delta": 6,
+      "n_bits_flipped": 2,
+      "n_trials": 30,
+      "checksum_verification_passed": 30,
+      "checksum_verification_pass_rate": 1.0,
+      "alphabet_check_pass_rate": 1.0,
+      "outcome_counts": {
+        "ok": 30
+      },
+      "tampering_undetected_and_output_changed": 30
+    },
+    "c_random_bitflip_reference": {
+      "description": "random single-bit ciphertext corruption (no checksum recomputation by definition of the corruption model), reference only - measured in ablation_measure/results.json exp2 B5, not re-run here",
+      "source": "/lenovofs1/home/wangyq/npj_uncon_comput/version2/code_temp/ablation_measure/results.json",
+      "rejected_or_differs_rate_per_config": {
+        "full": 1.0,
+        "no_fold": 1.0,
+        "no_sbox": 1.0,
+        "cipher_only": 1.0
+      },
+      "decrypt_to_original_plaintext_rate": 0.0
+    }
+  },
+  "conclusion": {
+    "checksum_is_recomputable_without_the_key": true,
+    "stream_cipher_is_malleable": true,
+    "alphabet_check_provides_error_detection_not_integrity": true,
+    "integrity_out_of_scope_of_the_present_scheme": true
+  }
+}

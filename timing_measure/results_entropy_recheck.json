@@ -1,0 +1,780 @@
+{
+  "meta": {
+    "experiment": "Ciphertext entropy re-measurement (Shannon plug-in + min-entropy)",
+    "random_seed": 20260909,
+    "n_trials": 30,
+    "data_lengths": [
+      50,
+      100,
+      500,
+      1000,
+      5000,
+      10000,
+      50000,
+      100000
+    ],
+    "plaintext_generation": "fresh random alphanumeric string (ascii_letters + digits) per trial, length = data length; rng = random.Random(20260909 + 100000*scheme_index + 1000*length_index)",
+    "protocol_source": "version1/crypto-ncRNA/Test1.0/test_shang.py (the protocol behind main-text Table S6); only deviation: keys/keypair pre-generated once instead of per trial (ciphertext entropy is key-independent)",
+    "ciphertext_layouts": {
+      "Crypto-ncRNA": "frozen full-config encrypt() output = 8-byte ChaCha20 nonce || ciphertext(material) || 32-byte SHA-256 checksum; variant \"without_checksum\" = same output with the trailing checksum removed",
+      "AES": "AES-256-CBC: 16-byte IV || PKCS7-padded ciphertext",
+      "RSA": "RSA-2048 PKCS#1 OAEP, 190-byte payload blocks concatenated (256 B/block)"
+    },
+    "shannon_estimator": "plug-in (shuffle) byte-frequency entropy, frozen calculate_entropy",
+    "min_entropy_definition": "H_inf = -log2(max_b p(b)) over pooled byte counts of all 30 trials of a cell",
+    "reconciliation_target": "main-text Table S6 (tab:avg_entropy_si), mean over 30 trials",
+    "reconciliation_tolerance": 0.01,
+    "frozen_code_path": "/lenovofs1/home/wangyq/npj_uncon_comput/version2/code/ncRNA 3.0/ncRNA3.5.py",
+    "frozen_code_sha256": "107b3e892d4390e23ac8a4e2f49e1de38a8eac971f157094e5d26c7d05f78732",
+    "frozen_code_access": "read-only import (stubbed matplotlib.pyplot); file untouched",
+    "pre_generated_key_material": {
+      "ncrna_sbox_seed": "11281704039767324563077935837873",
+      "ncrna_seed_sequence": "CACAUGUAACAACCUAUGUAACGGGGCUCGCG",
+      "ncrna_salt": "pJEoqIMUTxpniGaz",
+      "aes_seed": "72506649881077341334812538727236",
+      "aes_salt": "361EWRx1tCTeHjXx"
+    },
+    "cpu_model": "AMD EPYC 9354 32-Core Processor",
+    "nproc": 1,
+    "loadavg": "5.98, 6.04, 6.18",
+    "python_version": "3.12.13"
+  },
+  "measurements": {
+    "Crypto-ncRNA": {
+      "50": {
+        "data_length": 50,
+        "ciphertext_length_bytes": 241,
+        "shannon": {
+          "n": 30,
+          "mean": 7.144817752188444,
+          "median": 7.157459253134686,
+          "std": 0.05483153033710471,
+          "min": 7.038063246865734,
+          "max": 7.215631659809599
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.02441442266416,
+          "median": 7.0216951965603185,
+          "std": 0.06766403823262782,
+          "min": 6.889975938125003,
+          "max": 7.153414454995632
+        },
+        "min_entropy_pooled": 7.327926835508806,
+        "pooled_bytes": 7230
+      },
+      "100": {
+        "data_length": 100,
+        "ciphertext_length_bytes": 442,
+        "shannon": {
+          "n": 30,
+          "mean": 7.516250058731041,
+          "median": 7.52188622525059,
+          "std": 0.04172833930658859,
+          "min": 7.416594854776838,
+          "max": 7.585628889894932
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.474967519621263,
+          "median": 7.477769217380419,
+          "std": 0.04120965539555531,
+          "min": 7.389154431542701,
+          "max": 7.549019575221154
+        },
+        "min_entropy_pooled": 7.504968596119933,
+        "pooled_bytes": 13260
+      },
+      "500": {
+        "data_length": 500,
+        "ciphertext_length_bytes": 2041,
+        "shannon": {
+          "n": 30,
+          "mean": 7.907998450783951,
+          "median": 7.907783403995893,
+          "std": 0.00868532003415454,
+          "min": 7.8922077012485214,
+          "max": 7.924155155969697
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.906400335196059,
+          "median": 7.90498360142716,
+          "std": 0.008724248490815352,
+          "min": 7.892790373237292,
+          "max": 7.923328294349231
+        },
+        "min_entropy_pooled": 7.757292819809355,
+        "pooled_bytes": 61230
+      },
+      "1000": {
+        "data_length": 1000,
+        "ciphertext_length_bytes": 4042,
+        "shannon": {
+          "n": 30,
+          "mean": 7.954640348432956,
+          "median": 7.954373553198228,
+          "std": 0.0038581078886745016,
+          "min": 7.946340606422344,
+          "max": 7.960292301769327
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.954244816090145,
+          "median": 7.953992332477268,
+          "std": 0.0039365140782714365,
+          "min": 7.945734862680837,
+          "max": 7.959920697795133
+        },
+        "min_entropy_pooled": 7.789712119027727,
+        "pooled_bytes": 121260
+      },
+      "5000": {
+        "data_length": 5000,
+        "ciphertext_length_bytes": 20041,
+        "shannon": {
+          "n": 30,
+          "mean": 7.9908551024024925,
+          "median": 7.990972597862925,
+          "std": 0.0007072906323327352,
+          "min": 7.989202696593586,
+          "max": 7.992073253791839
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.9908424134668214,
+          "median": 7.990920804926389,
+          "std": 0.0007063027783380484,
+          "min": 7.989243003812939,
+          "max": 7.9921447938460615
+        },
+        "min_entropy_pooled": 7.920270072535119,
+        "pooled_bytes": 601230
+      },
+      "10000": {
+        "data_length": 10000,
+        "ciphertext_length_bytes": 40042,
+        "shannon": {
+          "n": 30,
+          "mean": 7.995368929193581,
+          "median": 7.9954599078201465,
+          "std": 0.0005355724962101901,
+          "min": 7.994079723518601,
+          "max": 7.996501152760101
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.995367010491536,
+          "median": 7.995473238875029,
+          "std": 0.0005320047488278836,
+          "min": 7.994114833987436,
+          "max": 7.996484505749382
+        },
+        "min_entropy_pooled": 7.934315903026213,
+        "pooled_bytes": 1201260
+      },
+      "50000": {
+        "data_length": 50000,
+        "ciphertext_length_bytes": 200041,
+        "shannon": {
+          "n": 30,
+          "mean": 7.999070150175098,
+          "median": 7.9990768534108705,
+          "std": 7.760449692287432e-05,
+          "min": 7.99894582563403,
+          "max": 7.999245077287566
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.9990703314300236,
+          "median": 7.999076109853684,
+          "std": 7.758751175473692e-05,
+          "min": 7.998944209047014,
+          "max": 7.999243889529184
+        },
+        "min_entropy_pooled": 7.968125273882705,
+        "pooled_bytes": 6001230
+      },
+      "100000": {
+        "data_length": 100000,
+        "ciphertext_length_bytes": 400042,
+        "shannon": {
+          "n": 30,
+          "mean": 7.999546981287824,
+          "median": 7.99955007662113,
+          "std": 4.196296518343564e-05,
+          "min": 7.999420759587892,
+          "max": 7.999628372691548
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.999546994856276,
+          "median": 7.999550063189089,
+          "std": 4.2047056733324824e-05,
+          "min": 7.999420172533675,
+          "max": 7.99962860104459
+        },
+        "min_entropy_pooled": 7.981467930135397,
+        "pooled_bytes": 12001260
+      }
+    },
+    "AES": {
+      "50": {
+        "data_length": 50,
+        "ciphertext_length_bytes": 80,
+        "shannon": {
+          "n": 30,
+          "mean": 6.017916813613924,
+          "median": 6.017210047998841,
+          "std": 0.06715612016358943,
+          "min": 5.893619813556233,
+          "max": 6.121928094887363
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 6.017916813613924,
+          "median": 6.017210047998841,
+          "std": 0.06715612016358943,
+          "min": 5.893619813556233,
+          "max": 6.121928094887363
+        },
+        "min_entropy_pooled": 6.980891177052295,
+        "pooled_bytes": 2400
+      },
+      "100": {
+        "data_length": 100,
+        "ciphertext_length_bytes": 128,
+        "shannon": {
+          "n": 30,
+          "mean": 6.542779275735969,
+          "median": 6.534046044862718,
+          "std": 0.050458347848044635,
+          "min": 6.460784765557392,
+          "max": 6.644454882778696
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 6.542779275735969,
+          "median": 6.534046044862718,
+          "std": 0.050458347848044635,
+          "min": 6.460784765557392,
+          "max": 6.644454882778696
+        },
+        "min_entropy_pooled": 7.15200309344505,
+        "pooled_bytes": 3840
+      },
+      "500": {
+        "data_length": 500,
+        "ciphertext_length_bytes": 528,
+        "shannon": {
+          "n": 30,
+          "mean": 7.60621177315356,
+          "median": 7.603881320502914,
+          "std": 0.030365727181862943,
+          "min": 7.557502420125353,
+          "max": 7.665850980125551
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.60621177315356,
+          "median": 7.603881320502914,
+          "std": 0.030365727181862943,
+          "min": 7.557502420125353,
+          "max": 7.665850980125551
+        },
+        "min_entropy_pooled": 7.459431618637297,
+        "pooled_bytes": 15840
+      },
+      "1000": {
+        "data_length": 1000,
+        "ciphertext_length_bytes": 1024,
+        "shannon": {
+          "n": 30,
+          "mean": 7.803663939407032,
+          "median": 7.803338855738849,
+          "std": 0.01967428459639018,
+          "min": 7.754482776901381,
+          "max": 7.8535382240054235
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.803663939407032,
+          "median": 7.803338855738849,
+          "std": 0.01967428459639018,
+          "min": 7.754482776901381,
+          "max": 7.8535382240054235
+        },
+        "min_entropy_pooled": 7.668485856283439,
+        "pooled_bytes": 30720
+      },
+      "5000": {
+        "data_length": 5000,
+        "ciphertext_length_bytes": 5024,
+        "shannon": {
+          "n": 30,
+          "mean": 7.963201347310382,
+          "median": 7.963331103909901,
+          "std": 0.002909954169051075,
+          "min": 7.957772775660109,
+          "max": 7.9694121832471225
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.963201347310382,
+          "median": 7.963331103909901,
+          "std": 0.002909954169051075,
+          "min": 7.957772775660109,
+          "max": 7.9694121832471225
+        },
+        "min_entropy_pooled": 7.828646284387558,
+        "pooled_bytes": 150720
+      },
+      "10000": {
+        "data_length": 10000,
+        "ciphertext_length_bytes": 10032,
+        "shannon": {
+          "n": 30,
+          "mean": 7.981818430173488,
+          "median": 7.98183529761061,
+          "std": 0.001556121058127788,
+          "min": 7.978348163741007,
+          "max": 7.985492541249708
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.981818430173488,
+          "median": 7.98183529761061,
+          "std": 0.001556121058127788,
+          "min": 7.978348163741007,
+          "max": 7.985492541249708
+        },
+        "min_entropy_pooled": 7.882930696664337,
+        "pooled_bytes": 300960
+      },
+      "50000": {
+        "data_length": 50000,
+        "ciphertext_length_bytes": 50032,
+        "shannon": {
+          "n": 30,
+          "mean": 7.9962436381525315,
+          "median": 7.996175401571108,
+          "std": 0.0002652150078805612,
+          "min": 7.995784299951801,
+          "max": 7.9968806615618835
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.9962436381525315,
+          "median": 7.996175401571108,
+          "std": 0.0002652150078805612,
+          "min": 7.995784299951801,
+          "max": 7.9968806615618835
+        },
+        "min_entropy_pooled": 7.95473467248424,
+        "pooled_bytes": 1500960
+      },
+      "100000": {
+        "data_length": 100000,
+        "ciphertext_length_bytes": 100032,
+        "shannon": {
+          "n": 30,
+          "mean": 7.998147253426771,
+          "median": 7.998193039455127,
+          "std": 0.00017437610164548962,
+          "min": 7.997759337739543,
+          "max": 7.998405652131925
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.998147253426771,
+          "median": 7.998193039455127,
+          "std": 0.00017437610164548962,
+          "min": 7.997759337739543,
+          "max": 7.998405652131925
+        },
+        "min_entropy_pooled": 7.968652370932035,
+        "pooled_bytes": 3000960
+      }
+    },
+    "RSA": {
+      "50": {
+        "data_length": 50,
+        "ciphertext_length_bytes": 256,
+        "shannon": {
+          "n": 30,
+          "mean": 7.177476904632169,
+          "median": 7.174246893452496,
+          "std": 0.039853673493583486,
+          "min": 7.122626855282827,
+          "max": 7.285808251809457
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.177476904632169,
+          "median": 7.174246893452496,
+          "std": 0.039853673493583486,
+          "min": 7.122626855282827,
+          "max": 7.285808251809457
+        },
+        "min_entropy_pooled": 7.352301743930881,
+        "pooled_bytes": 7680
+      },
+      "100": {
+        "data_length": 100,
+        "ciphertext_length_bytes": 256,
+        "shannon": {
+          "n": 30,
+          "mean": 7.176088817398135,
+          "median": 7.167985150326464,
+          "std": 0.06239700210893514,
+          "min": 7.016528185522162,
+          "max": 7.296332166064775
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.176088817398135,
+          "median": 7.167985150326464,
+          "std": 0.06239700210893514,
+          "min": 7.016528185522162,
+          "max": 7.296332166064775
+        },
+        "min_entropy_pooled": 7.2630344058337934,
+        "pooled_bytes": 7680
+      },
+      "500": {
+        "data_length": 500,
+        "ciphertext_length_bytes": 768,
+        "shannon": {
+          "n": 30,
+          "mean": 7.732577104378171,
+          "median": 7.734798459493252,
+          "std": 0.023657309461722602,
+          "min": 7.693146209012431,
+          "max": 7.778427657857882
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.732577104378171,
+          "median": 7.734798459493252,
+          "std": 0.023657309461722602,
+          "min": 7.693146209012431,
+          "max": 7.778427657857882
+        },
+        "min_entropy_pooled": 7.597035333021731,
+        "pooled_bytes": 23040
+      },
+      "1000": {
+        "data_length": 1000,
+        "ciphertext_length_bytes": 1536,
+        "shannon": {
+          "n": 30,
+          "mean": 7.874375226519096,
+          "median": 7.874804580123845,
+          "std": 0.009993980542939707,
+          "min": 7.847573568720143,
+          "max": 7.895953465170283
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.874375226519096,
+          "median": 7.874804580123845,
+          "std": 0.009993980542939707,
+          "min": 7.847573568720143,
+          "max": 7.895953465170283
+        },
+        "min_entropy_pooled": 7.743660246740214,
+        "pooled_bytes": 46080
+      },
+      "5000": {
+        "data_length": 5000,
+        "ciphertext_length_bytes": 6912,
+        "shannon": {
+          "n": 30,
+          "mean": 7.972964634219389,
+          "median": 7.972294542688023,
+          "std": 0.0021693934502475766,
+          "min": 7.9699752015349645,
+          "max": 7.979390491513653
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.972964634219389,
+          "median": 7.972294542688023,
+          "std": 0.0021693934502475766,
+          "min": 7.9699752015349645,
+          "max": 7.979390491513653
+        },
+        "min_entropy_pooled": 7.864116571918227,
+        "pooled_bytes": 207360
+      },
+      "10000": {
+        "data_length": 10000,
+        "ciphertext_length_bytes": 13568,
+        "shannon": {
+          "n": 30,
+          "mean": 7.98624354771947,
+          "median": 7.9862629130508695,
+          "std": 0.0011925313039439294,
+          "min": 7.984207739202102,
+          "max": 7.988163630440632
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.98624354771947,
+          "median": 7.9862629130508695,
+          "std": 0.0011925313039439294,
+          "min": 7.984207739202102,
+          "max": 7.988163630440632
+        },
+        "min_entropy_pooled": 7.889977212672172,
+        "pooled_bytes": 407040
+      },
+      "50000": {
+        "data_length": 50000,
+        "ciphertext_length_bytes": 67584,
+        "shannon": {
+          "n": 30,
+          "mean": 7.9972657821625734,
+          "median": 7.997235776972021,
+          "std": 0.0002881845280805361,
+          "min": 7.996459224802313,
+          "max": 7.997752282006263
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.9972657821625734,
+          "median": 7.997235776972021,
+          "std": 0.0002881845280805361,
+          "min": 7.996459224802313,
+          "max": 7.997752282006263
+        },
+        "min_entropy_pooled": 7.95551756408917,
+        "pooled_bytes": 2027520
+      },
+      "100000": {
+        "data_length": 100000,
+        "ciphertext_length_bytes": 134912,
+        "shannon": {
+          "n": 30,
+          "mean": 7.998644725862406,
+          "median": 7.998631644546153,
+          "std": 0.0001256387843484601,
+          "min": 7.998370735258168,
+          "max": 7.998907412349789
+        },
+        "shannon_without_checksum": {
+          "n": 30,
+          "mean": 7.998644725862406,
+          "median": 7.998631644546153,
+          "std": 0.0001256387843484601,
+          "min": 7.998370735258168,
+          "max": 7.998907412349789
+        },
+        "min_entropy_pooled": 7.964042279897145,
+        "pooled_bytes": 4047360
+      }
+    }
+  },
+  "reconciliation_vs_table_s6": {
+    "Crypto-ncRNA": [
+      {
+        "data_length": 50,
+        "table_s6_reference": 7.230238137,
+        "remeasured_mean": 7.144817752188444,
+        "abs_diff": 0.085420384811556,
+        "within_tolerance": false,
+        "ciphertext_length_bytes": 241
+      },
+      {
+        "data_length": 100,
+        "table_s6_reference": 7.520643336,
+        "remeasured_mean": 7.516250058731041,
+        "abs_diff": 0.004393277268959217,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 442
+      },
+      {
+        "data_length": 500,
+        "table_s6_reference": 7.906697071,
+        "remeasured_mean": 7.907998450783951,
+        "abs_diff": 0.001301379783950729,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 2041
+      },
+      {
+        "data_length": 1000,
+        "table_s6_reference": 7.954174669,
+        "remeasured_mean": 7.954640348432956,
+        "abs_diff": 0.0004656794329553904,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 4042
+      },
+      {
+        "data_length": 5000,
+        "table_s6_reference": 7.990878249,
+        "remeasured_mean": 7.9908551024024925,
+        "abs_diff": 2.3146597507128774e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 20041
+      },
+      {
+        "data_length": 10000,
+        "table_s6_reference": 7.995409292,
+        "remeasured_mean": 7.995368929193581,
+        "abs_diff": 4.036280641894763e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 40042
+      },
+      {
+        "data_length": 50000,
+        "table_s6_reference": 7.99908728,
+        "remeasured_mean": 7.999070150175098,
+        "abs_diff": 1.712982490253978e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 200041
+      },
+      {
+        "data_length": 100000,
+        "table_s6_reference": 7.999546736,
+        "remeasured_mean": 7.999546981287824,
+        "abs_diff": 2.452878238301537e-07,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 400042
+      }
+    ],
+    "AES": [
+      {
+        "data_length": 50,
+        "table_s6_reference": 6.029898017,
+        "remeasured_mean": 6.017916813613924,
+        "abs_diff": 0.011981203386075556,
+        "within_tolerance": false,
+        "ciphertext_length_bytes": 80
+      },
+      {
+        "data_length": 100,
+        "table_s6_reference": 6.553651309,
+        "remeasured_mean": 6.542779275735969,
+        "abs_diff": 0.010872033264031522,
+        "within_tolerance": false,
+        "ciphertext_length_bytes": 128
+      },
+      {
+        "data_length": 500,
+        "table_s6_reference": 7.603863355,
+        "remeasured_mean": 7.60621177315356,
+        "abs_diff": 0.002348418153560239,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 528
+      },
+      {
+        "data_length": 1000,
+        "table_s6_reference": 7.808256544,
+        "remeasured_mean": 7.803663939407032,
+        "abs_diff": 0.0045926045929673975,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 1024
+      },
+      {
+        "data_length": 5000,
+        "table_s6_reference": 7.962331187,
+        "remeasured_mean": 7.963201347310382,
+        "abs_diff": 0.0008701603103817845,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 5024
+      },
+      {
+        "data_length": 10000,
+        "table_s6_reference": 7.981768972,
+        "remeasured_mean": 7.981818430173488,
+        "abs_diff": 4.945817348733783e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 10032
+      },
+      {
+        "data_length": 50000,
+        "table_s6_reference": 7.996283968,
+        "remeasured_mean": 7.9962436381525315,
+        "abs_diff": 4.032984746871193e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 50032
+      },
+      {
+        "data_length": 100000,
+        "table_s6_reference": 7.998177172,
+        "remeasured_mean": 7.998147253426771,
+        "abs_diff": 2.991857322953706e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 100032
+      }
+    ],
+    "RSA": [
+      {
+        "data_length": 50,
+        "table_s6_reference": 7.166932575,
+        "remeasured_mean": 7.177476904632169,
+        "abs_diff": 0.010544329632169003,
+        "within_tolerance": false,
+        "ciphertext_length_bytes": 256
+      },
+      {
+        "data_length": 100,
+        "table_s6_reference": 7.1746127,
+        "remeasured_mean": 7.176088817398135,
+        "abs_diff": 0.001476117398135024,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 256
+      },
+      {
+        "data_length": 500,
+        "table_s6_reference": 7.739013967,
+        "remeasured_mean": 7.732577104378171,
+        "abs_diff": 0.006436862621828965,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 768
+      },
+      {
+        "data_length": 1000,
+        "table_s6_reference": 7.875851176,
+        "remeasured_mean": 7.874375226519096,
+        "abs_diff": 0.0014759494809046814,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 1536
+      },
+      {
+        "data_length": 5000,
+        "table_s6_reference": 7.972694673,
+        "remeasured_mean": 7.972964634219389,
+        "abs_diff": 0.00026996121938882567,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 6912
+      },
+      {
+        "data_length": 10000,
+        "table_s6_reference": 7.986424963,
+        "remeasured_mean": 7.98624354771947,
+        "abs_diff": 0.0001814152805303948,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 13568
+      },
+      {
+        "data_length": 50000,
+        "table_s6_reference": 7.997251254,
+        "remeasured_mean": 7.9972657821625734,
+        "abs_diff": 1.4528162573412828e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 67584
+      },
+      {
+        "data_length": 100000,
+        "table_s6_reference": 7.998614323,
+        "remeasured_mean": 7.998644725862406,
+        "abs_diff": 3.040286240629797e-05,
+        "within_tolerance": true,
+        "ciphertext_length_bytes": 134912
+      }
+    ],
+    "all_within_tolerance": false,
+    "max_abs_diff": 0.085420384811556
+  }
+}
